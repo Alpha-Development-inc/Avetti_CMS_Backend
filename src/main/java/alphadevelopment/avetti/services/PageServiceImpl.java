@@ -136,10 +136,40 @@ public class PageServiceImpl implements PageService {
         return row;
     }
 
+    @Override
+    public Page reorderRows(int source, int destination, String pageId) {
+        Page page = pageRepository.findById(pageId);
+
+
+        List<ContentRow> rows = page.getContentRows();
+        ContentRow targetRow = rows.get(source);
+        rows.remove(source);
+        rows.add(destination, targetRow);
+
+        page.setContentRows(rows);
+        return pageRepository.save(page);
+    }
+
+    @Override
+    public Page reorderComponents(int source, int destination, int rowIndex, String pageId) {
+        Page page = pageRepository.findById(pageId);
+        ContentRow row = page.getContentRow(rowIndex);
+
+        List<ContentComponent> components = row.getContentComponents();
+        ContentComponent targetComponent = components.get(source);
+        components.remove(source);
+        components.add(destination, targetComponent);
+
+        row.setContentComponents(components);
+        return pageRepository.save(page);
+    }
+
     private String getFilePathFromUrl(String url){
         int pos1 = url.lastIndexOf("/");
         int pos2 = url.lastIndexOf("?");
         String filePath = url.substring(pos1, pos2);
         return filePath;
     }
+
+
 }

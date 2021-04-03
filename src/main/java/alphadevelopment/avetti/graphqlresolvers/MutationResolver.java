@@ -122,4 +122,12 @@ public class MutationResolver implements GraphQLMutationResolver {
         return pageService.deleteComponent(componentIndex, rowIndex, pageId);
     }
 
+    public Page reorderRows(int source, int destination, String pageId){
+        return pageService.reorderRows(source, destination, pageId);
+    }
+
+    public Page reorderComponents(int source, int destination, int rowIndex, String pageId){
+        return pageService.reorderComponents(source, destination, rowIndex, pageId);
+    }
+
 }

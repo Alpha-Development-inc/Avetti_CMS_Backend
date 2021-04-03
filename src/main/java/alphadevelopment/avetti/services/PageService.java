@@ -28,4 +28,8 @@ public interface PageService {
 
     public ContentRow deleteComponent(int componentIndex, int rowIndex, String pageId);
 
+    public Page reorderRows(int source, int destination, String pageId);
+
+    public Page reorderComponents(int source, int destination, int rowIndex, String pageId);
+
 }
