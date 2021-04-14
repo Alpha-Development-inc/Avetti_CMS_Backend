@@ -6,8 +6,8 @@ import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
+//-----------------------WRITTEN BY OLEK-----------------------------------------------------
 @Component
 public class QueryResolver implements GraphQLQueryResolver {
 

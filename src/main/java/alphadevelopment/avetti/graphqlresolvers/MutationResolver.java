@@ -8,21 +8,18 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import graphql.schema.DataFetchingEnvironment;
 import io.imagekit.sdk.ImageKit;
 import io.imagekit.sdk.models.FileCreateRequest;
-import io.imagekit.sdk.models.FileUpdateRequest;
 import io.imagekit.sdk.models.results.Result;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-
-import javax.imageio.ImageIO;
 import javax.servlet.http.Part;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+//WRITTEN BY ALEX AND OLEK
 @Component
 @RequiredArgsConstructor
 public class MutationResolver implements GraphQLMutationResolver {
@@ -30,12 +27,7 @@ public class MutationResolver implements GraphQLMutationResolver {
     private final PageService pageService;
     private final ResourceLoader resourceLoader;
 
-//    createPage(title: String!): Page!
-//    createRow(title: String!, pageId: String!): Page!
-//    deleteRow(rowIndex: String!, pageId: String!): Page!
-//    createComponent(rowIndex: String!, pageId: String!): Page!
-//    deleteComponent(rowIndex: String!, pageId: String!): Page!
-
+    //OLEK PART------------------------------------------------------------------------------------------
     public Page createPage(String title){
         return pageService.createPage(title);
     }
@@ -51,11 +43,17 @@ public class MutationResolver implements GraphQLMutationResolver {
     public Page createTextComponent(String text, int rowIndex, String pageId){
         return pageService.createTextComponent(text, rowIndex, pageId);
     }
-
     public Page editTextComponent(String text, int componentIndex, int rowIndex, String pageId){
         return pageService.editTextComponent(text, componentIndex, rowIndex, pageId);
     }
+    public Page reorderRows(int source, int destination, String pageId){
+        return pageService.reorderRows(source, destination, pageId);
+    }
+    public Page reorderComponents(int source, int destination, int rowIndex, String pageId){
+        return pageService.reorderComponents(source, destination, rowIndex, pageId);
+    }
 
+    //ALEX PART------------------------------------------------------------------------------------------
     public Page createImageComponent(Part image, int rowIndex, String pageId,
                                            DataFetchingEnvironment environment) throws IOException, InvalidContentTypeException {
         //Getting image from request
@@ -120,14 +118,6 @@ public class MutationResolver implements GraphQLMutationResolver {
 
     public ContentRow deleteComponent(int componentIndex, int rowIndex, String pageId){
         return pageService.deleteComponent(componentIndex, rowIndex, pageId);
-    }
-
-    public Page reorderRows(int source, int destination, String pageId){
-        return pageService.reorderRows(source, destination, pageId);
-    }
-
-    public Page reorderComponents(int source, int destination, int rowIndex, String pageId){
-        return pageService.reorderComponents(source, destination, rowIndex, pageId);
     }
 
 }
