@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 
+//WRITTEN BY ALEXANDER
 @SpringBootApplication
 public class AvettiApplication {
 

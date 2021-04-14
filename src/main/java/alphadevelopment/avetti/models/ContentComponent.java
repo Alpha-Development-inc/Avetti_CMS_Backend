@@ -1,8 +1,8 @@
 package alphadevelopment.avetti.models;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
+//-----------------------WRITTEN BY OLEK-----------------------------------------------------
 @Data
 public class ContentComponent {
 

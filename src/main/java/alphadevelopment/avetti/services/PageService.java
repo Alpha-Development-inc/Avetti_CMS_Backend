@@ -6,6 +6,8 @@ import alphadevelopment.avetti.models.Page;
 
 import java.util.List;
 
+
+//-----------------------WRITTEN BY ALEX-----------------------------------------------------
 public interface PageService {
 
     List<Page> getPages();
